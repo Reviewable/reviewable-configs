@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "module": "commonjs",
+        "strictNullChecks": true,
+        "target": "ES2021",
+        "sourceMap": true
+    }
+}

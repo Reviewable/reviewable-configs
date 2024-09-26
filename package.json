@@ -1,0 +1,16 @@
+{
+  "name": "reviewable-configs",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./eslint-config": "./eslint-config/index.js",
+    "./tsconfig.json": "./tsconfig.json"
+  },
+  "dependencies": {
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-lodash": "^8.0.0",
+    "typescript-eslint": "^8.7.0"
+  }
+}
