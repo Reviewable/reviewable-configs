@@ -23,6 +23,9 @@ export default [
       '@typescript-eslint/no-use-before-define':
         ['error', {functions: false, ignoreTypeReferences: true}],
 
+      'no-useless-constructor': 'off',
+      '@typescript-eslint/no-useless-constructor': 'error',
+
       // Rules turned off for now
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
