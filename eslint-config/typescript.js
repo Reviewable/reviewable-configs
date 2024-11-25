@@ -26,8 +26,8 @@ export default [
       'no-useless-constructor': 'off',
       '@typescript-eslint/no-useless-constructor': 'error',
 
-      'no-useless-function': 'off',
-      '@typescript-eslint/no-useless-function': 'error',
+      'no-empty-function': 'off',
+      '@typescript-eslint/no-empty-function': 'error',
 
       // Rules turned off for now
       '@typescript-eslint/explicit-module-boundary-types': 'off',
