@@ -10,6 +10,16 @@ export default [
         project: true
       }
     },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          project: true
+        },
+        node: {
+          extensions: ['.js', '.mjs', '.cjs', '.ts', '.cts', '.mts', '.d.ts']
+        }
+      }
+    },
     rules: {
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
