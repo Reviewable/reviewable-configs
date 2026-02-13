@@ -13,7 +13,7 @@ export default [
     settings: {
       'import/resolver': {
         typescript: {
-          project: true
+          alwaysTryTypes: true
         },
         node: {
           extensions: ['.js', '.mjs', '.cjs', '.ts', '.cts', '.mts', '.d.ts', '.json']
