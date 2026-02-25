@@ -4,6 +4,7 @@
         "esModuleInterop": true,
         "resolveJsonModule": true,
         "module": "commonjs",
+        "isolatedModules": true,
         "strictNullChecks": true,
         "target": "ES2021",
         "sourceMap": true
