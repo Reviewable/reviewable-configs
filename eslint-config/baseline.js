@@ -87,7 +87,7 @@ export default [
       'no-script-url': 'error',
       'no-self-compare': 'error',
       'no-sequences': 'error',
-      'no-shadow': 'error',
+      'no-shadow': ['error', {ignoreOnInitialization: true}],
       'no-tabs': 'warn',
       'no-template-curly-in-string': 'error',
       'no-throw-literal': 'error',
