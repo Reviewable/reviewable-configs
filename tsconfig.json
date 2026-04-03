@@ -5,6 +5,7 @@
         "resolveJsonModule": true,
         "module": "commonjs",
         "isolatedModules": true,
+        "strict": false,
         "strictNullChecks": true,
         "target": "ES2021",
         "sourceMap": true
