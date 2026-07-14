@@ -4,6 +4,9 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
+import {ESLint} from 'eslint';
+
+import baselineConfig from '../eslint-config/baseline.js';
 import {
   findNearestPackageJson,
   normalizeGitHubRange,
@@ -106,4 +109,22 @@ test('findNearestPackageJson returns null when no manifest exists', () => {
   } finally {
     rmSync(tempRoot, {recursive: true, force: true});
   }
+});
+
+test('baseline wraps import plugin rules for ESLint compatibility', async () => {
+  const eslint = new ESLint({
+    overrideConfigFile: true,
+    overrideConfig: [
+      ...baselineConfig,
+      {
+        rules: {
+          'import/no-default-export': 'error'
+        }
+      }
+    ]
+  });
+
+  const [result] = await eslint.lintText('export default 1;\n', {filePath: 'probe.js'});
+
+  assert(result.messages.some(message => message.ruleId === 'import/no-default-export'));
 });

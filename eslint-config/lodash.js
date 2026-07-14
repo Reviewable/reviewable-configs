@@ -1,7 +1,9 @@
+import {fixupPluginRules} from '@eslint/compat';
 import lodashPlugin from 'eslint-plugin-lodash';
 
 const lodashConfig = lodashPlugin.configs.canonical;
-lodashConfig.plugins = {lodash: lodashPlugin};  // Compatiblity with Flat configs
+// Compatibility with Flat configs and ESLint 10.
+lodashConfig.plugins = {lodash: fixupPluginRules(lodashPlugin)};
 
 export default [
   lodashConfig,
