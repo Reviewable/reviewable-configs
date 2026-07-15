@@ -1,10 +1,11 @@
+import {fixupConfigRules} from '@eslint/compat';
 import typescript from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
 
 export default [
   ...[
     ...typescript.configs.recommended,
-    importPlugin.flatConfigs.typescript,
+    ...fixupConfigRules(importPlugin.flatConfigs.typescript),
     {
       languageOptions: {
         parserOptions: {
