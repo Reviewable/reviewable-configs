@@ -7,6 +7,7 @@ import test from 'node:test';
 import {ESLint} from 'eslint';
 
 import baselineConfig from '../eslint-config/baseline.js';
+import typescriptConfig from '../eslint-config/typescript.js';
 import {
   findNearestPackageJson,
   normalizeGitHubRange,
@@ -127,4 +128,37 @@ test('baseline wraps import plugin rules for ESLint compatibility', async () => 
   const [result] = await eslint.lintText('export default 1;\n', {filePath: 'probe.js'});
 
   assert(result.messages.some(message => message.ruleId === 'import/no-default-export'));
+});
+
+test('typescript requires inferred Promise-returning functions to be async', async () => {
+  const tempRoot = mkdtempSync(path.join(tmpdir(), 'reviewable-typescript-config-'));
+  try {
+    writeFileSync(path.join(tempRoot, 'tsconfig.json'), JSON.stringify({
+      compilerOptions: {
+        module: 'NodeNext', moduleResolution: 'NodeNext', strict: true, target: 'ES2022'
+      },
+      include: ['probe.ts']
+    }));
+    writeFileSync(path.join(tempRoot, 'probe.ts'), [
+      'const promise = Promise.resolve();',
+      'export const inferred = () => promise;',
+      'export const explicit = (skip: boolean): Promise<void> | undefined =>',
+      '  skip ? undefined : promise;',
+      ''
+    ].join('\n'));
+    const eslint = new ESLint({
+      cwd: tempRoot,
+      overrideConfigFile: true,
+      overrideConfig: typescriptConfig
+    });
+
+    const [result] = await eslint.lintFiles('probe.ts');
+
+    assert.deepEqual(
+      result.messages.map(message => ({line: message.line, ruleId: message.ruleId})),
+      [{line: 2, ruleId: '@typescript-eslint/promise-function-async'}]
+    );
+  } finally {
+    rmSync(tempRoot, {recursive: true, force: true});
+  }
 });

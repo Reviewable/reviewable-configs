@@ -26,6 +26,7 @@
     "typescript-eslint": "^8.7.0"
   },
   "devDependencies": {
-    "npm-check-updates": "^22.2.9"
+    "npm-check-updates": "^22.2.9",
+    "typescript": "^5.0.4"
   }
 }

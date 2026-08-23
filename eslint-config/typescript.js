@@ -25,6 +25,7 @@ export default [
       rules: {
         '@typescript-eslint/no-floating-promises': 'error',
         '@typescript-eslint/no-misused-promises': 'error',
+        '@typescript-eslint/promise-function-async': 'error',
         '@typescript-eslint/no-unused-vars': ['error', {args: 'none', varsIgnorePattern: '^unused'}],
 
         // https://stackoverflow.com/a/63961972
